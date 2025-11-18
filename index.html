@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Birthday Gita 🎂💗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Poppins", sans-serif;
+      background: radial-gradient(circle at top, #ffe6f7, #ffd1dc, #ffc9f0);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow: hidden;
+      color: #2b1b2f;
+    }
+
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,0.65) 0, transparent 40px),
+        radial-gradient(circle at 90% 10%, rgba(255,255,255,0.4) 0, transparent 45px),
+        radial-gradient(circle at 20% 90%, rgba(255,255,255,0.45) 0, transparent 40px);
+      opacity: 0.9;
+    }
+
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: #ff7aa2;
+      transform: rotate(45deg);
+      animation: float 10s linear infinite;
+      opacity: 0.6;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: #ff7aa2;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -7px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -7px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(110vh) rotate(45deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    .card {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 520px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(18px);
+      border-radius: 26px;
+      box-shadow: 0 18px 50px rgba(255, 105, 180, 0.35);
+      padding: 26px 22px 28px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      overflow: hidden;
+    }
+
+    .top-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255, 192, 203, 0.5);
+      margin-bottom: 12px;
+    }
+
+    .tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ff4f8a;
+    }
+
+    .screen {
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      min-height: 220px;
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .title {
+      font-size: 26px;
+      line-height: 1.4;
+      color: #ff387a;
+      margin-bottom: 12px;
+    }
+
+    .big-emoji {
+      font-size: 40px;
+      margin: 8px 0 4px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #6b455f;
+      margin-bottom: 16px;
+    }
+
+    .divider {
+      width: 60%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #ff94c2, transparent);
+      margin: 12px auto 20px;
+      opacity: 0.9;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+      outline: none;
+      padding: 12px 22px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ff7aa2, #ff4f8a);
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 12px 25px rgba(255, 79, 138, 0.4);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+      margin-top: 10px;
+    }
+
+    .btn span.emoji {
+      font-size: 18px;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 16px 30px rgba(255, 79, 138, 0.5);
+      filter: brightness(1.02);
+    }
+
+    .btn:active {
+      transform: translateY(0) scale(0.98);
+      box-shadow: 0 6px 15px rgba(255, 79, 138, 0.4);
+    }
+
+    .hint {
+      font-size: 11px;
+      color: #97628a;
+      margin-top: 6px;
+    }
+
+    .paragraph {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #4b304a;
+      text-align: left;
+      background: rgba(255, 245, 252, 0.9);
+      border-radius: 18px;
+      padding: 16px 14px;
+      border: 1px dashed rgba(255, 138, 189, 0.6);
+    }
+
+    .name-highlight {
+      color: #ff387a;
+      font-weight: 600;
+    }
+
+    .pet {
+      font-style: italic;
+    }
+
+    .floating-emoji {
+      font-size: 22px;
+      animation: bounce 1.6s infinite ease-in-out;
+      display: inline-block;
+      margin: 0 2px;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .video-wrapper {
+      margin-top: 10px;
+      background: rgba(255, 245, 252, 0.9);
+      border-radius: 18px;
+      padding: 10px;
+      border: 1px solid rgba(255, 186, 216, 0.9);
+    }
+
+    video {
+      width: 100%;
+      border-radius: 16px;
+      outline: none;
+    }
+
+    .footer-note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #6b455f;
+    }
+
+    .footer-note strong {
+      color: #ff387a;
+    }
+
+    .progress-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 12px;
+      margin-bottom: -2px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 174, 207, 0.6);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .dot.active {
+      background: #ff4f8a;
+      transform: scale(1.3);
+    }
+
+    @media (max-width: 420px) {
+      .card {
+        padding: 22px 16px 22px;
+        border-radius: 22px;
+      }
+      .title {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- soft glow background -->
+  <div class="stars"></div>
+
+  <!-- floating hearts -->
+  <div class="hearts" id="hearts-container"></div>
+
+  <main class="card">
+    <div class="top-tag">
+      <div class="tag-dot"></div>
+      <span>Birthday surprise for Gita 💗</span>
+    </div>
+
+    <!-- Screen 1 -->
+    <section class="screen active" data-step="0">
+      <div class="big-emoji">👀🎂</div>
+      <h1 class="title">Ohh look... someone’s birthday today!</h1>
+      <p class="subtitle">
+        Atmosphere thodi zyaada cute lag rahi hai na?  
+        Lagta hai universe kisi <span class="pet">special cutu</span> ka celebration kar raha hai. 💫
+      </p>
+      <div class="divider"></div>
+      <button class="btn" id="next-btn">
+        <span class="emoji">➡️</span>
+        <span>Next</span>
+      </button>
+      <p class="hint">psst… pookie, tap next 👆</p>
+    </section>
+
+    <!-- Screen 2 -->
+    <section class="screen" data-step="1">
+      <div class="big-emoji">🎉💕</div>
+      <h1 class="title">Ohhh… it’s YOUR birthday, cutie pie Gita! 🧁</h1>
+      <p class="subtitle">
+        Happy Birthday my <span class="name-highlight">Gita</span> —  
+        my bubu, my pookie, my favourite human glitch in this boring simulation. 😚
+      </p>
+      <div class="divider"></div>
+      <button class="btn">
+        <span class="emoji">➡️</span>
+        <span>Next</span>
+      </button>
+      <p class="hint">Chalo aage, Hulk ka dil abhi full khulne wala hai 💌</p>
+    </section>
+
+    <!-- Screen 3 -->
+    <section class="screen" data-step="2">
+      <div class="big-emoji">💘✨</div>
+      <h1 class="title">A tiny paragraph for a not-so-tiny love</h1>
+      <div class="divider"></div>
+      <div class="paragraph">
+        <p>
+          <span class="name-highlight">Gita</span>, I still don’t know kaise
+          itni soft, itni funny, itni caring soul mere life mein aa gayi.
+          Tumhari ek chhoti si “hi” se bhi mood better ho jata hai —
+          jaise mera personal sunshine, but thoda zyaada pagal version. 😌
+        </p>
+        <br />
+        <p>
+          Kabhi tum meri <span class="pet">pookie</span> ho, kabhi
+          <span class="pet">bubu</span>, kabhi meri sabse safe jagah.
+          Aur main tumhara Hulk, tumhara chuchu, tumhara
+          <span class="name-highlight">darling Het</span> —
+          jo shayad perfect nahi hai, but tumhare liye genuinely best try karta hai.
+        </p>
+        <br />
+        <p>
+          I’m so stupidly, happily lucky to call you <strong>my girlfriend</strong>.
+          Thank you for choosing me, samajhne ki koshish karne ke liye,
+          fights ke baad bhi rukne ke liye, aur har din mere life ko thoda
+          sa “home” jaisa feel karwane ke liye.  
+        </p>
+        <br />
+        <p>
+          Aaj ke liye bas ek simple wish:  
+          jitna pyaar tum mere dil mein feel karti ho,
+          usse bhi zyaada pyaar tum khud ke liye feel karo.  
+          Because, Gita, <strong>you deserve everything soft & beautiful in this life.</strong> 💗
+        </p>
+      </div>
+      <button class="btn" style="margin-top: 16px;">
+        <span class="emoji">➡️</span>
+        <span>Last surprise</span>
+      </button>
+      <p class="hint">Ready for your special video, cutu? 🎥</p>
+    </section>
+
+    <!-- Screen 4 (Video) -->
+    <section class="screen" data-step="3">
+      <div class="big-emoji">🎬💌</div>
+      <h1 class="title">For you, from your Hulk 💚</h1>
+      <p class="subtitle">
+        Maine thoda sa extra pyaar, thoda sa cringe and bohot saare feels
+        daal ke ek chhota sa video banaya hai…  
+        sirf meri <span class="name-highlight">Gita</span> ke liye. 💞
+      </p>
+      <div class="video-wrapper">
+        <!-- 🔧 TODO: Replace YOUR_VIDEO_URL_HERE with your real video link or file path -->
+        <!-- Example if video is in same repo: src="birthday-video.mp4" -->
+        <video controls preload="metadata">
+          <source src="YOUR_VIDEO_URL_HERE" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <p class="footer-note">
+        Jab bhi tum thodi sad, thodi lost, ya thodi overthinking mode mein ho na,
+        <strong>ye page aur ye video dubara dekh lena</strong> —  
+        your chuchu is always right here, rooting for you. 🥺
+      </p>
+      <div class="progress-dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot active"></div>
+      </div>
+      <button class="btn" style="margin-top: 10px;" id="restart-btn">
+        <span class="emoji">🔁</span>
+        <span>Watch from start</span>
+      </button>
+    </section>
+
+    <!-- Progress dots for steps 0–2 -->
+    <div class="progress-dots" id="progress-dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </main>
+
+  <script>
+    // Floating hearts
+    const heartsContainer = document.getElementById("hearts-container");
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      const size = Math.random() * 10 + 6; // 6–16px
+      heart.style.width = size + "px";
+      heart.style.height = size + "px";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 7 + Math.random() * 6 + "s";
+      heart.style.animationDelay = Math.random() * 5 + "s";
+      heart.style.opacity = 0.3 + Math.random() * 0.5;
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 13000);
+    }
+
+    for (let i = 0; i < 20; i++) {
+      createHeart();
+    }
+    setInterval(createHeart, 1500);
+
+    // Screen navigation
+    const screens = Array.from(document.querySelectorAll(".screen"));
+    const progressDotsContainer = document.getElementById("progress-dots");
+    const dots = Array.from(progressDotsContainer.querySelectorAll(".dot"));
+    const mainNextBtn = document.getElementById("next-btn");
+    const restartBtn = document.getElementById("restart-btn");
+    let currentStep = 0;
+
+    function showStep(step) {
+      if (step < 0 || step >= screens.length) return;
+
+      screens.forEach((scr, index) => {
+        scr.classList.toggle("active", index === step);
+      });
+
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === step);
+      });
+
+      currentStep = step;
+      if (step === screens.length - 1) {
+        // last screen: hide main dots, show inside ones
+        progressDotsContainer.style.display = "none";
+      } else {
+        progressDotsContainer.style.display = "flex";
+      }
+    }
+
+    function goNext() {
+      const nextStep = currentStep + 1;
+      if (nextStep < screens.length) {
+        showStep(nextStep);
+        launchConfetti();
+      }
+    }
+
+    // Attach next button handlers (all btns except restart)
+    screens.forEach((screen) => {
+      const btn = screen.querySelector(".btn");
+      if (btn && btn.id !== "restart-btn") {
+        btn.addEventListener("click", goNext);
+      }
+    });
+
+    if (mainNextBtn) {
+      mainNextBtn.addEventListener("click", goNext);
+    }
+
+    if (restartBtn) {
+      restartBtn.addEventListener("click", () => {
+        showStep(0);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    // Simple confetti (sparkle emojis)
+    function launchConfetti() {
+      const duration = 600;
+      const end = Date.now() + duration;
+      const colors = ["#ff7aa2", "#ffb6c1", "#ffffff", "#ffddf1"];
+
+      (function frame() {
+        const timeLeft = end - Date.now();
+        if (timeLeft <= 0) return;
+
+        for (let i = 0; i < 10; i++) {
+          const conf = document.createElement("span");
+          conf.textContent = "✨";
+          conf.style.position = "fixed";
+          conf.style.zIndex = 999;
+          conf.style.left = Math.random() * 100 + "vw";
+          conf.style.top = "-10px";
+          conf.style.fontSize = 12 + Math.random() * 8 + "px";
+          conf.style.transition =
+            "transform 0.9s ease-out, opacity 0.9s ease-out";
+          conf.style.transform = `translateY(${80 + Math.random() * 40}vh)`;
+          conf.style.opacity = "0";
+          conf.style.color =
+            colors[Math.floor(Math.random() * colors.length)];
+          document.body.appendChild(conf);
+
+          requestAnimationFrame(() => {
+            conf.style.opacity = "1";
+          });
+
+          setTimeout(() => conf.remove(), 1000);
+        }
+        requestAnimationFrame(frame);
+      })();
+    }
+
+    // Start on first step
+    showStep(0);
+  </script>
+</body>
+</html>
