@@ -316,7 +316,7 @@
         Lagta hai universe kisi <span class="pet">special cutu</span> ka celebration kar raha hai. 💫
       </p>
       <div class="divider"></div>
-      <button class="btn" id="next-btn">
+      <button class="btn">
         <span class="emoji">➡️</span>
         <span>Next</span>
       </button>
@@ -376,7 +376,7 @@
       </div>
       <button class="btn" style="margin-top: 16px;">
         <span class="emoji">➡️</span>
-        <span>Last surprise</span>
+        <span>Video surprise</span>
       </button>
       <p class="hint">Ready for your special video, cutu? 🎥</p>
     </section>
@@ -391,10 +391,9 @@
         sirf meri <span class="name-highlight">Gita</span> ke liye. 💞
       </p>
       <div class="video-wrapper">
-        <!-- 🔧 TODO: Replace YOUR_VIDEO_URL_HERE with your real video link or file path -->
-        <!-- Example if video is in same repo: src="birthday-video.mp4" -->
+        <!-- 🔧 TODO: Replace gita-birthday.mp4 with your real video file name if different -->
         <video controls preload="metadata">
-        <source src="birthday-video.mp4" type="video/mp4" />
+          <source src="birthday-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
@@ -403,21 +402,41 @@
         <strong>ye page aur ye video dubara dekh lena</strong> —  
         your chuchu is always right here, rooting for you. 🥺
       </p>
-      <div class="progress-dots">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot active"></div>
-      </div>
-      <button class="btn" style="margin-top: 10px;" id="restart-btn">
-        <span class="emoji">🔁</span>
-        <span>Watch from start</span>
+      <button class="btn" style="margin-top: 14px;">
+        <span class="emoji">➡️</span>
+        <span>One last thing…</span>
       </button>
     </section>
 
-    <!-- Progress dots for steps 0–2 -->
+    <!-- Screen 5 (Final I love you page) -->
+    <section class="screen" data-step="4">
+      <div class="big-emoji">💞🥺</div>
+      <h1 class="title">I love you the most, bacha 💗</h1>
+      <p class="subtitle">
+        Out of all the versions of my life I could imagine,  
+        the best one is simple — the one where <strong>you’re in it</strong>.  
+        My pookie, my bubu, my cutu Gita… you’re my safest place.
+      </p>
+      <div class="divider"></div>
+      <p class="subtitle">
+        No matter kitne bhi saal, kitne bhi birthdays aa jaayein —  
+        <strong>mera answer same rahega:</strong>  
+        <br /><br />
+        <span class="floating-emoji">💌</span>
+        I love you the most, bacha.
+        <span class="floating-emoji">💌</span>
+      </p>
+      <button class="btn" id="restart-btn" style="margin-top: 18px;">
+        <span class="emoji">🔁</span>
+        <span>Watch from start</span>
+      </button>
+      <p class="hint">Kabhi bhi yaad aaye, is link ko dubara khol lena, okay? – your Hulk 🤍</p>
+    </section>
+
+    <!-- Progress dots -->
     <div class="progress-dots" id="progress-dots">
       <div class="dot active"></div>
+      <div class="dot"></div>
       <div class="dot"></div>
       <div class="dot"></div>
       <div class="dot"></div>
@@ -454,7 +473,6 @@
     const screens = Array.from(document.querySelectorAll(".screen"));
     const progressDotsContainer = document.getElementById("progress-dots");
     const dots = Array.from(progressDotsContainer.querySelectorAll(".dot"));
-    const mainNextBtn = document.getElementById("next-btn");
     const restartBtn = document.getElementById("restart-btn");
     let currentStep = 0;
 
@@ -470,12 +488,6 @@
       });
 
       currentStep = step;
-      if (step === screens.length - 1) {
-        // last screen: hide main dots, show inside ones
-        progressDotsContainer.style.display = "none";
-      } else {
-        progressDotsContainer.style.display = "flex";
-      }
     }
 
     function goNext() {
@@ -493,10 +505,6 @@
         btn.addEventListener("click", goNext);
       }
     });
-
-    if (mainNextBtn) {
-      mainNextBtn.addEventListener("click", goNext);
-    }
 
     if (restartBtn) {
       restartBtn.addEventListener("click", () => {
@@ -546,4 +554,3 @@
   </script>
 </body>
 </html>
-
