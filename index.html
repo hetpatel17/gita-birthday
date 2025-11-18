@@ -19,7 +19,8 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
-      overflow: hidden;
+      /* ⬇⬇ FIX: allow vertical scrolling */
+      overflow-x: hidden;
       color: #2b1b2f;
     }
 
@@ -393,7 +394,7 @@
       <div class="video-wrapper">
         <!-- 🔧 TODO: Replace gita-birthday.mp4 with your real video file name if different -->
         <video controls preload="metadata">
-          <source src="birthday-video.mp4" type="video/mp4" />
+          <source src="gita-birthday.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
@@ -488,6 +489,8 @@
       });
 
       currentStep = step;
+      // scroll to top on each screen change
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function goNext() {
@@ -509,7 +512,6 @@
     if (restartBtn) {
       restartBtn.addEventListener("click", () => {
         showStep(0);
-        window.scrollTo({ top: 0, behavior: "smooth" });
       });
     }
 
